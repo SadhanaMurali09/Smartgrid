@@ -1,0 +1,17 @@
+{
+  "name": "senson-grid-root",
+  "version": "1.0.0",
+  "description": "Root package for running frontend and backend concurrently",
+  "scripts": {
+    "install-all": "npm install --prefix backend && npm install --prefix frontend",
+    "start": "npx -y concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev": "npx -y concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "build": "npm run build:all --prefix frontend",
+    "start:prod": "npm run start:prod --prefix backend"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3"
+  }
+}

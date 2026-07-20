@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.production
+!.env.example
+!.env.development
+!.env.production.example
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# Build outputs
+frontend/dist/
+frontend/dist-public/
+frontend/dist-admin/
+frontend/dist-ssr/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
