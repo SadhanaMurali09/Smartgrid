@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
+const fs = require('fs');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -65,28 +66,33 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// ─── Serve Static Files in Production ───
-// This is a fallback for single-server deployments.
-// In production, use Nginx to serve static files instead.
-if (process.env.NODE_ENV === 'production') {
-    const publicDistPath = path.join(__dirname, '..', 'frontend', 'dist-public');
-    const adminDistPath = path.join(__dirname, '..', 'frontend', 'dist-admin');
+// ─── Serve Frontend for SPA Routes ───
+// This keeps direct URLs like /services or /admin/dashboard from returning 404s.
+const publicIndexPath = path.join(__dirname, '..', 'frontend', 'index-public.html');
+const adminIndexPath = path.join(__dirname, '..', 'frontend', 'index-admin.html');
+const publicDistPath = path.join(__dirname, '..', 'frontend', 'dist-public');
+const adminDistPath = path.join(__dirname, '..', 'frontend', 'dist-admin');
 
-    // Serve admin panel on /admin-static (optional, for single-server setups)
-    app.use('/admin-static', express.static(adminDistPath));
+app.use((req, res) => {
+    if (req.path.startsWith('/api')) {
+        return res.status(404).json({ message: 'API route not found' });
+    }
 
-    // Serve public site as default
-    app.use(express.static(publicDistPath));
-
-    // SPA fallback for public site — serve index.html for unmatched routes
-    app.get('*', (req, res) => {
-        // Don't serve SPA fallback for API routes
-        if (req.path.startsWith('/api')) {
-            return res.status(404).json({ message: 'API route not found' });
+    if (req.path.startsWith('/admin')) {
+        const adminEntry = path.join(adminDistPath, 'index-admin.html');
+        if (fs.existsSync(adminEntry)) {
+            return res.sendFile(adminEntry);
         }
-        res.sendFile(path.join(publicDistPath, 'index.html'));
-    });
-}
+        return res.sendFile(adminIndexPath);
+    }
+
+    const publicEntry = path.join(publicDistPath, 'index-public.html');
+    if (fs.existsSync(publicEntry)) {
+        return res.sendFile(publicEntry);
+    }
+
+    return res.sendFile(publicIndexPath);
+});
 
 // Base route (development only)
 if (process.env.NODE_ENV !== 'production') {
