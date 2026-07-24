@@ -77,7 +77,7 @@ const Home = () => {
         />
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-16">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-28">
           {/* Glowing SG Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
@@ -154,7 +154,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-4 sm:gap-6"
+            className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8"
           >
             <Link
               to="/services"
@@ -197,7 +197,8 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer"
+            onClick={() => window.scrollTo({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
           >
             <div className="flex flex-col items-center gap-2">
               <span className="text-xs text-slate-500 tracking-widest uppercase">Scroll</span>
