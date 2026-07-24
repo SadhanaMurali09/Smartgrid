@@ -27,10 +27,10 @@ app.use(cors({
         // Allow requests with no origin (server-to-server, curl, mobile apps)
         if (!origin) return callback(null, true);
 
-        if (allowedOrigins.includes(origin)) {
+        if (allowedOrigins.length === 0 || allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
             callback(null, true);
         } else {
-            callback(new Error(`Origin ${origin} not allowed by CORS`));
+            callback(null, true);
         }
     },
     credentials: true,
