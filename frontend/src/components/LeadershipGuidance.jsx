@@ -1,58 +1,64 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiLinkedin, FiTwitter, FiMail, FiArrowRight, FiCode, FiCpu, FiPenTool } from 'react-icons/fi';
+import { FiCode, FiCpu, FiPenTool, FiUsers } from 'react-icons/fi';
 
-const leaders = [
+const teams = [
   {
     id: 1,
-    name: 'Sadhana',
-    role: 'Frontend Developer',
+    title: 'Software Developers',
+    badge: 'Software Engineering',
     icon: <FiCode className="w-6 h-6" />,
-    badge: 'Frontend Lead',
     glowColor: 'rgba(0, 229, 255, 0.25)',
     iconBg: 'from-cyan-500/20 to-blue-600/20',
     iconColor: '#00e5ff',
-    bio: 'Spearheading front-end architecture, crafting responsive web interfaces, dynamic React components, and seamless user experiences across digital platforms.',
-    expertise: ['React.js', 'Frontend Architecture', 'UI/UX Design', 'Tailwind CSS'],
-    social: {
-      linkedin: 'https://linkedin.com',
-      twitter: 'https://twitter.com',
-      email: 'mailto:sadhana@sensorgrid.com'
-    }
+    badgeBg: 'rgba(0, 229, 255, 0.08)',
+    badgeBorder: 'rgba(0, 229, 255, 0.2)',
+    badgeText: '#00e5ff',
+    description: 'Crafting modern web applications, scalable APIs, responsive interfaces, and enterprise software solutions.',
+    members: [
+      { name: 'Sadhana', role: 'Frontend Developer' },
+      { name: 'Dharun', role: 'Backend Developer' },
+      { name: 'Vazhith', role: 'Software Developer' }
+    ],
+    expertise: ['React.js', 'Node.js & Express', 'REST APIs', 'Full-Stack Dev']
   },
   {
     id: 2,
-    name: 'Dharun',
-    role: 'Backend Developer',
+    title: 'IoT Developers',
+    badge: 'IoT Systems',
     icon: <FiCpu className="w-6 h-6" />,
-    badge: 'Backend Lead',
-    glowColor: 'rgba(37, 99, 235, 0.25)',
-    iconBg: 'from-blue-500/20 to-indigo-600/20',
-    iconColor: '#3b82f6',
-    bio: 'Architecting high-performance server backend systems, secure RESTful APIs, database engineering, and real-time data processing infrastructure.',
-    expertise: ['Node.js & Express', 'Database Architecture', 'API Development', 'System Security'],
-    social: {
-      linkedin: 'https://linkedin.com',
-      twitter: 'https://twitter.com',
-      email: 'mailto:dharun@sensorgrid.com'
-    }
+    glowColor: 'rgba(52, 211, 153, 0.25)',
+    iconBg: 'from-emerald-500/20 to-teal-600/20',
+    iconColor: '#34d399',
+    badgeBg: 'rgba(52, 211, 153, 0.08)',
+    badgeBorder: 'rgba(52, 211, 153, 0.2)',
+    badgeText: '#34d399',
+    description: 'Building smart connected devices, sensor automation, embedded hardware integration, and edge computing networks.',
+    members: [
+      { name: 'Shanjai Kumar', role: 'IoT Engineer' },
+      { name: 'Ajith', role: 'Embedded Systems' },
+      { name: 'Harinisha', role: 'IoT Developer' }
+    ],
+    expertise: ['Embedded Systems', 'Sensor Networks', 'Edge Computing', 'IoT Architecture']
   },
   {
     id: 3,
-    name: 'Vazhith',
-    role: 'Software Developer',
+    title: 'Creative Designers',
+    badge: 'Design & Creative',
     icon: <FiPenTool className="w-6 h-6" />,
-    badge: 'Core Developer',
-    glowColor: 'rgba(168, 85, 247, 0.25)',
-    iconBg: 'from-purple-500/20 to-pink-600/20',
-    iconColor: '#a855f7',
-    bio: 'Developing robust software modules, integrating smart components, optimizing web performance, and delivering modern end-to-end digital solutions.',
-    expertise: ['Full-Stack Dev', 'Software Engineering', 'System Integration', 'Web Tech'],
-    social: {
-      linkedin: 'https://linkedin.com',
-      twitter: 'https://twitter.com',
-      email: 'mailto:vazhith@sensorgrid.com'
-    }
+    glowColor: 'rgba(251, 113, 133, 0.25)',
+    iconBg: 'from-rose-500/20 to-orange-600/20',
+    iconColor: '#fb7185',
+    badgeBg: 'rgba(251, 113, 133, 0.08)',
+    badgeBorder: 'rgba(251, 113, 133, 0.2)',
+    badgeText: '#fb7185',
+    description: 'Designing intuitive UI/UX interfaces, brand identities, design systems, and engaging visual digital experiences.',
+    members: [
+      { name: 'Shivaprakash', role: 'UI/UX Design Lead' },
+      { name: 'Sridevi', role: 'Visual Designer' },
+      { name: 'Harinisha', role: 'Product Designer' }
+    ],
+    expertise: ['UI/UX Design', 'Design Systems', 'Brand Identity', 'Visual Assets']
   }
 ];
 
@@ -86,7 +92,7 @@ const LeadershipGuidance = () => {
                 color: '#00e5ff',
               }}
             >
-              Software Developers & Leadership
+              Our Experts & Teams
             </span>
           </motion.div>
 
@@ -97,7 +103,7 @@ const LeadershipGuidance = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-5xl font-bold text-white mb-4"
           >
-            Meet Our Expert{' '}
+            Meet Our Dedicated{' '}
             <span
               style={{
                 background: 'linear-gradient(90deg, #00e5ff 0%, #2563eb 50%, #6366f1 100%)',
@@ -105,7 +111,7 @@ const LeadershipGuidance = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Software Development Team
+              Development Teams
             </span>
           </motion.h2>
 
@@ -116,15 +122,15 @@ const LeadershipGuidance = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Our dedicated team brings together core expertise in frontend, backend, and full-stack engineering to build world-class digital products for Sensor Grid.
+            Our specialized domain teams collaborate seamlessly across Software, IoT, and Creative Design to build world-class solutions for Sensor Grid.
           </motion.p>
         </div>
 
-        {/* 3 Responsive Content Cards */}
+        {/* 3 Domain Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {leaders.map((leader, index) => (
+          {teams.map((team, index) => (
             <motion.div
-              key={leader.id}
+              key={team.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -141,7 +147,7 @@ const LeadershipGuidance = () => {
               <div
                 className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{
-                  boxShadow: `0 0 40px ${leader.glowColor}, inset 0 0 30px ${leader.glowColor}`,
+                  boxShadow: `0 0 40px ${team.glowColor}, inset 0 0 30px ${team.glowColor}`,
                 }}
               />
 
@@ -149,55 +155,86 @@ const LeadershipGuidance = () => {
               <div
                 className="absolute inset-x-0 top-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-3xl"
                 style={{
-                  background: 'linear-gradient(90deg, transparent, #00e5ff, transparent)',
+                  background: `linear-gradient(90deg, transparent, ${team.iconColor}, transparent)`,
                 }}
               />
 
               <div className="relative z-10">
-                {/* Content Header: Icon Pill & Title */}
-                <div className="flex items-start gap-4 mb-6">
+                {/* Header: Icon & Domain Badge */}
+                <div className="flex items-center justify-between mb-6">
                   <div
-                    className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${leader.iconBg} flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-110 transition-transform duration-300`}
-                    style={{ color: leader.iconColor, boxShadow: `0 0 15px ${leader.glowColor}` }}
+                    className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${team.iconBg} flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-110 transition-transform duration-300`}
+                    style={{ color: team.iconColor, boxShadow: `0 0 15px ${team.glowColor}` }}
                   >
-                    {leader.icon}
+                    {team.icon}
                   </div>
-                  <div>
-                    <span
-                      className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold mb-1"
-                      style={{
-                        background: 'rgba(0,229,255,0.08)',
-                        border: '1px solid rgba(0,229,255,0.2)',
-                        color: '#00e5ff',
-                      }}
-                    >
-                      {leader.badge}
-                    </span>
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                      {leader.name}
-                    </h3>
-                    <p className="text-xs text-cyan-400 font-medium">{leader.role}</p>
+                  <span
+                    className="inline-block px-3 py-1 rounded-full text-xs font-semibold"
+                    style={{
+                      background: team.badgeBg,
+                      border: `1px solid ${team.badgeBorder}`,
+                      color: team.badgeText,
+                    }}
+                  >
+                    {team.badge}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                  {team.title}
+                </h3>
+
+                <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  {team.description}
+                </p>
+
+                {/* Team Members List */}
+                <div className="mb-6">
+                  <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <FiUsers className="w-3.5 h-3.5 text-cyan-400" />
+                    Team Members
+                  </h4>
+                  <div className="space-y-2.5">
+                    {team.members.map((member, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div
+                            className="w-2 h-2 rounded-full"
+                            style={{ background: team.iconColor }}
+                          />
+                          <span className="text-sm font-bold text-white">{member.name}</span>
+                        </div>
+                        <span
+                          className="text-xs font-medium px-2.5 py-0.5 rounded-full"
+                          style={{
+                            background: team.badgeBg,
+                            border: `1px solid ${team.badgeBorder}`,
+                            color: team.badgeText,
+                          }}
+                        >
+                          {member.role}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Pure Text Bio */}
-                <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                  {leader.bio}
-                </p>
-
-                {/* Focus Areas Pills */}
-                <div className="mb-6">
+                {/* Focus Areas */}
+                <div className="mb-4">
                   <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2.5">
                     Core Focus Area
                   </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {leader.expertise.map((item, idx) => (
+                  <div className="flex flex-wrap gap-1.5">
+                    {team.expertise.map((item, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 rounded-full text-xs font-medium text-slate-300"
+                        className="px-2.5 py-1 rounded-full text-xs font-medium text-slate-300"
                         style={{
                           background: 'rgba(255,255,255,0.04)',
-                          border: '1px solid rgba(0,229,255,0.12)',
+                          border: '1px solid rgba(255,255,255,0.1)',
                         }}
                       >
                         {item}
@@ -205,47 +242,6 @@ const LeadershipGuidance = () => {
                     ))}
                   </div>
                 </div>
-              </div>
-
-              {/* Action / Social Link Footer */}
-              <div className="relative z-10 pt-4 border-t border-cyan-500/10 flex items-center justify-between mt-2">
-                <div className="flex items-center gap-3">
-                  <a
-                    href={leader.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-all"
-                    aria-label="LinkedIn Profile"
-                  >
-                    <FiLinkedin className="w-4 h-4" />
-                  </a>
-                  <a
-                    href={leader.social.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-all"
-                    aria-label="Twitter Profile"
-                  >
-                    <FiTwitter className="w-4 h-4" />
-                  </a>
-                  <a
-                    href={leader.social.email}
-                    className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-all"
-                    aria-label="Email Contact"
-                  >
-                    <FiMail className="w-4 h-4" />
-                  </a>
-                </div>
-
-                <a
-                  href={leader.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all duration-300 group-hover:translate-x-1"
-                  style={{ color: '#00e5ff' }}
-                >
-                  View Profile <FiArrowRight className="w-3.5 h-3.5" />
-                </a>
               </div>
             </motion.div>
           ))}
