@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiCode, FiCpu, FiPenTool, FiArrowRight, FiZap, FiGlobe, FiShield } from 'react-icons/fi';
 import FloatingLines from '../components/FloatingLines/FloatingLines';
+import LeadershipGuidance from '../components/LeadershipGuidance';
 
 const Home = () => {
   const services = [
@@ -216,6 +217,9 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* ======================== LEADERSHIP & GUIDANCE SECTION ======================== */}
+      <LeadershipGuidance />
 
       {/* ======================== STATS SECTION ======================== */}
       <section className="relative py-16 z-10" style={{ background: 'linear-gradient(180deg, #030712 0%, #0a1628 100%)' }}>

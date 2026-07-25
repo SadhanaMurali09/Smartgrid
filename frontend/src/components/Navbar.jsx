@@ -9,12 +9,35 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
+    { name: 'Leadership', path: '/#leadership' },
     { name: 'Services', path: '/services' },
     { name: 'Previous Projects', path: '/projects' },
     { name: 'Contact Us', path: '/contact' },
   ];
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => {
+    if (path.includes('#')) {
+      const [targetPath, hash] = path.split('#');
+      const isCorrectPath = location.pathname === targetPath || (targetPath === '/' && location.pathname === '/');
+      return isCorrectPath && location.hash === `#${hash}`;
+    }
+    return location.pathname === path && !location.hash;
+  };
+
+  const handleNavClick = (path, e) => {
+    setIsOpen(false);
+    if (path.includes('#')) {
+      const [targetPath, hash] = path.split('#');
+      if (location.pathname === targetPath || (targetPath === '/' && location.pathname === '/')) {
+        e.preventDefault();
+        window.history.pushState(null, '', path);
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +46,18 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     <nav
@@ -54,6 +89,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
+                onClick={(e) => handleNavClick(link.path, e)}
                 className={`text-sm font-medium transition-all duration-300 relative ${
                   isActive(link.path)
                     ? 'text-cyan-400'
@@ -91,7 +127,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleNavClick(link.path, e)}
                 className={`block px-3 py-3 rounded-xl text-base font-medium transition-all ${
                   isActive(link.path)
                     ? 'bg-cyan-500/10 text-cyan-400'
