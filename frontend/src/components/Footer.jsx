@@ -1,61 +1,171 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiTwitter, FiLinkedin, FiGithub, FiMail } from 'react-icons/fi';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { FiMail, FiPhone, FiMapPin, FiFacebook, FiLinkedin, FiGithub, FiArrowUp } from 'react-icons/fi';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLeadershipClick = (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/#leadership');
+    } else {
+      window.location.hash = 'leadership';
+      const el = document.getElementById('leadership');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer
-      className="text-slate-300 py-12 mt-0"
-      style={{ background: '#030712', borderTop: '1px solid rgba(0,229,255,0.1)' }}
-    >
+    <footer className="relative bg-[#030712] text-slate-300 pt-16 pb-12 border-t border-slate-800/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold text-sm"
-                style={{ boxShadow: '0 0 15px rgba(0,229,255,0.3)' }}
-              >
-                SG
-              </div>
-              <span className="font-bold text-xl text-white">Sensor Grid</span>
-            </div>
-            <p className="text-sm text-slate-400 mb-6 max-w-md">
-              Delivering innovative Software, IoT, and Design solutions. 
-              We transform ideas into digital reality with modern technologies and premium aesthetics.
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          {/* Logo & Subtitle */}
+          <div className="col-span-1 md:col-span-1">
+            <Link to="/" className="inline-block mb-4">
+              <span className="text-3xl font-extrabold tracking-tight text-white">
+                Sensor<span className="text-blue-500">Grid</span>
+              </span>
+            </Link>
+            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+              Building modern web applications, IoT solutions, embedded systems, and creative digital experiences that help businesses innovate and grow.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-slate-400 transition-colors hover:text-cyan-400"><FiTwitter size={20} /></a>
-              <a href="#" className="text-slate-400 transition-colors hover:text-cyan-400"><FiLinkedin size={20} /></a>
-              <a href="#" className="text-slate-400 transition-colors hover:text-cyan-400"><FiGithub size={20} /></a>
+          </div>
+
+          {/* Company Column */}
+          <div>
+            <h4 className="text-white font-semibold text-base mb-5">Company</h4>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li>
+                <Link to="/" className="hover:text-cyan-400 transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <a href="#leadership" onClick={handleLeadershipClick} className="hover:text-cyan-400 transition-colors">
+                  About
+                </a>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-cyan-400 transition-colors">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-cyan-400 transition-colors">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Services Column */}
+          <div>
+            <h4 className="text-white font-semibold text-base mb-5">Services</h4>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li>
+                <Link to="/services/software" className="hover:text-cyan-400 transition-colors">
+                  Web Development
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/iot" className="hover:text-cyan-400 transition-colors">
+                  IoT Solutions
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/designing" className="hover:text-cyan-400 transition-colors">
+                  Creative Designing
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Column */}
+          <div>
+            <h4 className="text-white font-semibold text-base mb-5">Contact</h4>
+            <ul className="space-y-3 text-sm text-slate-400 mb-6">
+              <li className="flex items-center gap-3">
+                <FiMail className="text-blue-500 w-4 h-4 shrink-0" />
+                <a href="mailto:sensorgrid123@gmail.com" className="hover:text-cyan-400 transition-colors">
+                  sensorgrid123@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <FiPhone className="text-blue-500 w-4 h-4 shrink-0" />
+                <a href="tel:+918668079413" className="hover:text-cyan-400 transition-colors">
+                  +91 86680 79413
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <FiMapPin className="text-blue-500 w-4 h-4 shrink-0" />
+                <span>Gobi, Tamil Nadu, India</span>
+              </li>
+            </ul>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-3">
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 hover:bg-blue-600/20 transition-all"
+                aria-label="Facebook"
+              >
+                <FiFacebook className="w-4 h-4" />
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 hover:bg-blue-600/20 transition-all"
+                aria-label="LinkedIn"
+              >
+                <FiLinkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="#"
+                className="w-9 h-9 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500 hover:bg-blue-600/20 transition-all"
+                aria-label="GitHub"
+              >
+                <FiGithub className="w-4 h-4" />
+              </a>
             </div>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/" className="transition-colors hover:text-cyan-400">Home</Link></li>
-              <li><Link to="/#leadership" className="transition-colors hover:text-cyan-400">Leadership</Link></li>
-              <li><Link to="/services" className="transition-colors hover:text-cyan-400">Services</Link></li>
-              <li><Link to="/projects" className="transition-colors hover:text-cyan-400">Projects</Link></li>
-              <li><Link to="/contact" className="transition-colors hover:text-cyan-400">Contact Us</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contact Info</h4>
-            <ul className="space-y-2 text-sm text-slate-400">
-              <li className="flex items-center gap-2"><FiMail /> info@sensorgrid.com</li>
-              <li>123 Tech Avenue, Silicon Valley, CA 94025</li>
-              <li>+1 (555) 123-4567</li>
-            </ul>
           </div>
         </div>
-        
-        <div className="border-t border-cyan-500/10 mt-12 pt-8 text-sm text-center text-slate-500">
-          &copy; {new Date().getFullYear()} Sensor Grid. All rights reserved.
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div>
+            &copy; {new Date().getFullYear()} SensorGrid. All rights reserved. | Developed and Maintained by{' '}
+            <span className="text-blue-400 font-medium">Sadhana and Dharun</span>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-slate-200 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-slate-200 transition-colors">
+              Terms & Conditions
+            </a>
+            <Link to="/admin/login" className="hover:text-cyan-400 text-slate-300 font-medium transition-colors">
+              Admin Login
+            </Link>
+          </div>
         </div>
       </div>
+
+      {/* Floating Scroll To Top Button */}
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-lg shadow-blue-600/40 transition-all duration-300 hover:scale-110 active:scale-95"
+        aria-label="Scroll to top"
+      >
+        <FiArrowUp className="w-5 h-5" />
+      </button>
     </footer>
   );
 };
