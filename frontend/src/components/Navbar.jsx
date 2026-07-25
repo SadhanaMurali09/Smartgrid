@@ -22,13 +22,26 @@ const Navbar = () => {
 
   const handleNavClick = (link, e) => {
     setIsOpen(false);
-    if (link.path === '/leadership') {
+    if (link.path === '/') {
+      if (location.pathname === '/' || location.pathname === '/leadership') {
+        navigate('/');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else if (link.path === '/leadership') {
       const element = document.getElementById('leadership');
       if (element && (location.pathname === '/' || location.pathname === '/leadership')) {
         e.preventDefault();
         navigate('/leadership');
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    setIsOpen(false);
+    if (location.pathname === '/' || location.pathname === '/leadership') {
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -62,7 +75,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link to="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
               <div
                 className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold text-xl transition-all duration-300 group-hover:scale-110"
                 style={{ boxShadow: '0 0 20px rgba(0,229,255,0.3)' }}
