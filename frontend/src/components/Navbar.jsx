@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Leadership', path: '/#leadership' },
+    { name: 'Leadership', path: '/', isLeadership: true },
     { name: 'Services', path: '/services' },
     { name: 'Previous Projects', path: '/projects' },
     { name: 'Contact Us', path: '/contact' },
   ];
 
-  const isActive = (path) => {
-    if (path.includes('#')) {
-      const [targetPath, hash] = path.split('#');
-      const isCorrectPath = location.pathname === targetPath || (targetPath === '/' && location.pathname === '/');
-      return isCorrectPath && location.hash === `#${hash}`;
+  const isActive = (link) => {
+    if (link.isLeadership) {
+      return location.pathname === '/' && location.hash === '#leadership';
     }
-    return location.pathname === path && !location.hash;
+    return location.pathname === link.path && !location.hash;
   };
 
-  const handleNavClick = (path, e) => {
+  const handleNavClick = (link, e) => {
     setIsOpen(false);
-    if (path.includes('#')) {
-      const [targetPath, hash] = path.split('#');
-      if (location.pathname === targetPath || (targetPath === '/' && location.pathname === '/')) {
-        e.preventDefault();
-        window.history.pushState(null, '', path);
-        const element = document.getElementById(hash);
+    if (link.isLeadership) {
+      e.preventDefault();
+      if (location.pathname !== '/') {
+        navigate('/#leadership');
+      } else {
+        window.location.hash = 'leadership';
+        const element = document.getElementById('leadership');
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
@@ -48,13 +48,12 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
+    if (location.hash === '#leadership') {
+      const element = document.getElementById('leadership');
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+        }, 150);
       }
     }
   }, [location]);
@@ -88,16 +87,16 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.path}
-                onClick={(e) => handleNavClick(link.path, e)}
+                to={link.isLeadership ? '/#leadership' : link.path}
+                onClick={(e) => handleNavClick(link, e)}
                 className={`text-sm font-medium transition-all duration-300 relative ${
-                  isActive(link.path)
+                  isActive(link)
                     ? 'text-cyan-400'
                     : 'text-slate-300 hover:text-cyan-400'
                 }`}
               >
                 {link.name}
-                {isActive(link.path) && (
+                {isActive(link) && (
                   <span
                     className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
                     style={{ background: 'linear-gradient(90deg, #00e5ff, #2563eb)' }}
@@ -126,10 +125,10 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.path}
-                onClick={(e) => handleNavClick(link.path, e)}
+                to={link.isLeadership ? '/#leadership' : link.path}
+                onClick={(e) => handleNavClick(link, e)}
                 className={`block px-3 py-3 rounded-xl text-base font-medium transition-all ${
-                  isActive(link.path)
+                  isActive(link)
                     ? 'bg-cyan-500/10 text-cyan-400'
                     : 'text-slate-300 hover:bg-white/5 hover:text-cyan-400'
                 }`}
