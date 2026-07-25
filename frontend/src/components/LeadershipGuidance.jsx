@@ -1,57 +1,57 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiLinkedin, FiTwitter, FiMail, FiArrowRight, FiAward, FiCpu, FiPenTool } from 'react-icons/fi';
+import { FiLinkedin, FiTwitter, FiMail, FiArrowRight, FiCode, FiCpu, FiPenTool } from 'react-icons/fi';
 
 const leaders = [
   {
     id: 1,
-    name: 'Dr. Marcus Vance',
-    role: 'Chief Executive & Strategic Vision',
-    icon: <FiAward className="w-6 h-6" />,
-    badge: 'Executive Leadership',
+    name: 'Sadhana',
+    role: 'Frontend Developer',
+    icon: <FiCode className="w-6 h-6" />,
+    badge: 'Frontend Lead',
     glowColor: 'rgba(0, 229, 255, 0.25)',
     iconBg: 'from-cyan-500/20 to-blue-600/20',
     iconColor: '#00e5ff',
-    bio: 'Pioneering strategic growth and enterprise digital transformation with over 15 years of industry leadership in software architecture & scalable systems.',
-    expertise: ['Strategic Growth', 'Enterprise Tech', 'AI Strategy'],
+    bio: 'Spearheading front-end architecture, crafting responsive web interfaces, dynamic React components, and seamless user experiences across digital platforms.',
+    expertise: ['React.js', 'Frontend Architecture', 'UI/UX Design', 'Tailwind CSS'],
     social: {
       linkedin: 'https://linkedin.com',
       twitter: 'https://twitter.com',
-      email: 'mailto:marcus@sensorgrid.com'
+      email: 'mailto:sadhana@sensorgrid.com'
     }
   },
   {
     id: 2,
-    name: 'Elena Rostova',
-    role: 'Head of IoT & Systems Architecture',
+    name: 'Dharun',
+    role: 'Backend Developer',
     icon: <FiCpu className="w-6 h-6" />,
-    badge: 'Technical Guidance',
+    badge: 'Backend Lead',
     glowColor: 'rgba(37, 99, 235, 0.25)',
-    iconBg: 'from-emerald-500/20 to-teal-600/20',
-    iconColor: '#34d399',
-    bio: 'Spearheading intelligent connected devices, smart hardware integration, and high-throughput real-time IoT networks across global deployments.',
-    expertise: ['IoT Systems', 'Embedded Devices', 'Edge Computing'],
+    iconBg: 'from-blue-500/20 to-indigo-600/20',
+    iconColor: '#3b82f6',
+    bio: 'Architecting high-performance server backend systems, secure RESTful APIs, database engineering, and real-time data processing infrastructure.',
+    expertise: ['Node.js & Express', 'Database Architecture', 'API Development', 'System Security'],
     social: {
       linkedin: 'https://linkedin.com',
       twitter: 'https://twitter.com',
-      email: 'mailto:elena@sensorgrid.com'
+      email: 'mailto:dharun@sensorgrid.com'
     }
   },
   {
     id: 3,
-    name: 'David Chen',
-    role: 'Director of Product & UI/UX Design',
+    name: 'Vazhith',
+    role: 'Software Developer',
     icon: <FiPenTool className="w-6 h-6" />,
-    badge: 'Design Strategy',
-    glowColor: 'rgba(99, 102, 241, 0.25)',
-    iconBg: 'from-rose-500/20 to-orange-600/20',
-    iconColor: '#fb7185',
-    bio: 'Championing human-centered design principles and crafting intuitive, modern user experiences that turn complex technical systems into effortless interaction.',
-    expertise: ['UI/UX Architecture', 'Design Systems', 'User Research'],
+    badge: 'Core Developer',
+    glowColor: 'rgba(168, 85, 247, 0.25)',
+    iconBg: 'from-purple-500/20 to-pink-600/20',
+    iconColor: '#a855f7',
+    bio: 'Developing robust software modules, integrating smart components, optimizing web performance, and delivering modern end-to-end digital solutions.',
+    expertise: ['Full-Stack Dev', 'Software Engineering', 'System Integration', 'Web Tech'],
     social: {
       linkedin: 'https://linkedin.com',
       twitter: 'https://twitter.com',
-      email: 'mailto:david@sensorgrid.com'
+      email: 'mailto:vazhith@sensorgrid.com'
     }
   }
 ];
@@ -86,7 +86,7 @@ const LeadershipGuidance = () => {
                 color: '#00e5ff',
               }}
             >
-              Leadership & Guidance
+              Software Developers & Leadership
             </span>
           </motion.div>
 
@@ -97,7 +97,7 @@ const LeadershipGuidance = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-5xl font-bold text-white mb-4"
           >
-            Guided by Visionary{' '}
+            Meet Our Expert{' '}
             <span
               style={{
                 background: 'linear-gradient(90deg, #00e5ff 0%, #2563eb 50%, #6366f1 100%)',
@@ -105,7 +105,7 @@ const LeadershipGuidance = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Industry Leaders
+              Software Development Team
             </span>
           </motion.h2>
 
@@ -116,11 +116,11 @@ const LeadershipGuidance = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Our leadership team combines deep technical expertise with strategic vision to steer Sensor Grid toward groundbreaking digital solutions.
+            Our dedicated team brings together core expertise in frontend, backend, and full-stack engineering to build world-class digital products for Sensor Grid.
           </motion.p>
         </div>
 
-        {/* 3 Responsive Content Cards (No Images / No Photos) */}
+        {/* 3 Responsive Content Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {leaders.map((leader, index) => (
             <motion.div
