@@ -16,6 +16,7 @@ const AppPublic = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/leadership" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:category" element={<ServiceDetail />} />
             <Route path="/projects" element={<PreviousProjects />} />

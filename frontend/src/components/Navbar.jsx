@@ -10,31 +10,24 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Leadership', path: '/', isLeadership: true },
+    { name: 'Leadership', path: '/leadership' },
     { name: 'Services', path: '/services' },
     { name: 'Previous Projects', path: '/projects' },
     { name: 'Contact Us', path: '/contact' },
   ];
 
   const isActive = (link) => {
-    if (link.isLeadership) {
-      return location.pathname === '/' && location.hash === '#leadership';
-    }
-    return location.pathname === link.path && !location.hash;
+    return location.pathname === link.path;
   };
 
   const handleNavClick = (link, e) => {
     setIsOpen(false);
-    if (link.isLeadership) {
-      e.preventDefault();
-      if (location.pathname !== '/') {
-        navigate('/#leadership');
-      } else {
-        window.location.hash = 'leadership';
-        const element = document.getElementById('leadership');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+    if (link.path === '/leadership') {
+      const element = document.getElementById('leadership');
+      if (element && (location.pathname === '/' || location.pathname === '/leadership')) {
+        e.preventDefault();
+        navigate('/leadership');
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
@@ -48,7 +41,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (location.hash === '#leadership') {
+    if (location.pathname === '/leadership' || location.hash === '#leadership') {
       const element = document.getElementById('leadership');
       if (element) {
         setTimeout(() => {
@@ -87,7 +80,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.isLeadership ? '/#leadership' : link.path}
+                to={link.path}
                 onClick={(e) => handleNavClick(link, e)}
                 className={`text-sm font-medium transition-all duration-300 relative ${
                   isActive(link)
@@ -125,7 +118,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.isLeadership ? '/#leadership' : link.path}
+                to={link.path}
                 onClick={(e) => handleNavClick(link, e)}
                 className={`block px-3 py-3 rounded-xl text-base font-medium transition-all ${
                   isActive(link)
