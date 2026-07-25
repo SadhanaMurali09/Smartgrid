@@ -23,26 +23,25 @@ const Navbar = () => {
   const handleNavClick = (link, e) => {
     setIsOpen(false);
     if (link.path === '/') {
-      if (location.pathname === '/' || location.pathname === '/leadership') {
-        navigate('/');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (link.path === '/leadership') {
-      const element = document.getElementById('leadership');
-      if (element && (location.pathname === '/' || location.pathname === '/leadership')) {
-        e.preventDefault();
-        navigate('/leadership');
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      navigate('/leadership');
+      setTimeout(() => {
+        const element = document.getElementById('leadership');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const handleLogoClick = (e) => {
     setIsOpen(false);
-    if (location.pathname === '/' || location.pathname === '/leadership') {
-      navigate('/');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -61,8 +60,10 @@ const Navbar = () => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 150);
       }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [location]);
+  }, [location.pathname]);
 
   return (
     <nav
